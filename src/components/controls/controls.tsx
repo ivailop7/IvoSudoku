@@ -6,7 +6,7 @@ function renderControls() {
     for (let i = 0; i < digits.length; ++i) {
         const cells = [];
         for (let j = 0; j < digits[i].length; ++j) {
-            cells.push(<td key={"control " + i + j}>{digits[i][j]}</td>);
+            cells.push(<td key={"control " + i + j}><input type='button' value={digits[i][j]}/></td>);
         }
         table.push(<tr key={"controlRow " + i}>{cells}</tr>);
     }
@@ -15,7 +15,7 @@ function renderControls() {
 
 const controls = () => {
     return(
-        <div className='Controls-Style' id='Controls' style={{ marginLeft: "48%"}}>
+        <div className='Controls-Style' id='Controls' style={{ marginLeft: "46%"}}>
             <table>
                 <tbody>
                     {renderControls()}

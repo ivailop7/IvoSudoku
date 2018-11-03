@@ -15,7 +15,7 @@ class Grid extends React.Component<IProps, IState> {
         for (let i = 0; i < 9; ++i) {
             const cells = [];
             for (let j = 0; j < 9; ++j) {
-                cells.push(<td key={"cell " + i + j}>{this.props.matrix[i][j]}</td>);
+                cells.push(<td key={"cell " + i + j}><input type='text' value={this.props.matrix[i][j]} size={1} /></td>);
             }
             table.push(<tr key={"row " + i}>{cells}</tr>);
         }
@@ -24,7 +24,7 @@ class Grid extends React.Component<IProps, IState> {
     
     public render() { 
         console.log(this.props);
-        return (<div className="Grid" style={{ marginLeft: "45%"}}>
+        return (<div className="Grid" style={{ marginLeft: "30%"}}>
             <table>
                 <tbody>
                     {this.renderGrid()}
