@@ -1,9 +1,8 @@
 import * as React from 'react';
-import './App.css';
-import Controls from './components/controls/controls';
-import Footer from './components/footer/footer';
-import Grid from './components/grid/grid';
-import Header from './components/header/header';
+import Controls from './components/controls';
+import Footer from './components/footer';
+import Grid from './components/grid';
+import Header from './components/header';
 
 class App extends React.Component {
   
@@ -27,11 +26,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header/>
-        <br/>
         <Grid matrix={this.matrix} />
-        <br/>
         <Controls/>
-        <br/>
         <Footer/>
       </div>
     );

@@ -1,9 +1,29 @@
+/* GLOBAL */
+/* Hide HTML5 Up and Down arrows in Number Input Field */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: url("./assets/wallpaper.png") repeat-y center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-
+@font-face {
+  font-family: 'Night in Tokyo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/NightinTokyo-Bold.ttf');
+}
+/* HEADER */
 .cornerBanners {
   position: fixed;
   top: 0px;
@@ -21,16 +41,18 @@ body {
   border: 0;
 }
 h2 {
-  margin: 3px;
-  font-family: "Cat Cafe";
-  font-size: 54px;
-  color: aliceblue;
+  margin: 3px auto;
+  font-family: "Night in Tokyo";
+  font-size: 76px;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  text-align: center;
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 415px) {
   h2 {
       margin: 20px;
-      font-family: "Cat Cafe";
+      font-family: "Night in Tokyo";
       font-size: 32px;
       color: aliceblue;
   }
@@ -47,34 +69,79 @@ h2 {
       width: 80px;
   }
 }
-
+/* GRID */
+.Grid {
+  margin-top: 5vh;
+}
+.Grid table {
+  margin: 0 auto;
+  background-color: beige;
+}
+.Grid tbody {
+  background-color: blue;
+}
+.Grid tr {
+  background-color: red;
+}
+.Grid td {
+  background-color: green;
+}
+.Grid td input {
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 36px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+/* CONTROLS */
+.Controls {
+}
+.Controls table {
+  margin: 0 auto;
+  background-color: beige;
+}
+.Controls tbody {
+  background-color: blue;
+}
+.Controls tr {
+  background-color: red;
+}
+.Controls td {
+  background-color: green;
+}
+.Controls td input {
+  text-align: center;
+}
+/* FOOTER */
 .shareButtons {
   margin: 0 auto;
-  font-family: "Cat Cafe";
+  font-family: "Night in Tokyo";
   font-size: 24px;
   height: 35px;
   color: aliceblue;
   position: fixed;
-  bottom: 77px;
+  bottom: 42px;
   width: 100%;
+  text-align: center;
 }
 .shareTheGame {
   vertical-align: middle;
   line-height: 30px;
+  text-align: center;
 }
 #shareButton img {
   width: 35px;
   padding: 5px;
   border: 0;
   box-shadow: 0;
-  display: inline;
+  text-align: center;
+  /* display: inline; */
 }
-
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 415px) {
   .shareButtons {
       margin: 0 auto;
-      font-family: "Cat Cafe";
+      font-family: "Night in Tokyo";
       font-size: 16px;
       height: 20px;
       color: aliceblue;

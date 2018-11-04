@@ -1,8 +1,8 @@
 import * as React from 'react';
-import forkOnGitHub from '../../assets/fork_on_github.png';
-import goToBlog from '../../assets/go_to_blog.png';
+import forkOnGitHub from '../assets/fork_on_github.png';
+import goToBlog from '../assets/go_to_blog.png';
+
 const header = () => {
-    // <div className='Header-Style' id='Header'>
     return(
         <div className='cornerBanners'>
             <a href="https://github.com/ivailop7/IvoSudoku">

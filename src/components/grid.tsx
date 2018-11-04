@@ -5,7 +5,12 @@ interface IProps {
 }
 
 interface IState {
-    a?: any;
+    empty?: any;
+}
+
+function cellValueChanged() {
+    console.log("value Changed");
+    return true;    
 }
 
 class Grid extends React.Component<IProps, IState> {
@@ -15,7 +20,7 @@ class Grid extends React.Component<IProps, IState> {
         for (let i = 0; i < 9; ++i) {
             const cells = [];
             for (let j = 0; j < 9; ++j) {
-                cells.push(<td key={"cell " + i + j}><input type='text' value={this.props.matrix[i][j]} size={1} /></td>);
+                cells.push(<td key={"cell " + i + j}><input type='number' defaultValue={this.props.matrix[i][j].toString()} min={1} max={9} onChange={cellValueChanged} /></td>);
             }
             table.push(<tr key={"row " + i}>{cells}</tr>);
         }
@@ -24,7 +29,7 @@ class Grid extends React.Component<IProps, IState> {
     
     public render() { 
         console.log(this.props);
-        return (<div className="Grid" style={{ marginLeft: "30%"}}>
+        return (<div className='Grid'>
             <table>
                 <tbody>
                     {this.renderGrid()}
