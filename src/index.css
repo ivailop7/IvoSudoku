@@ -54,6 +54,7 @@ h2 {
   color: rgb(0, 0, 0);
   width: 100%;
   text-align: center;
+  text-shadow: 2px 2px #333333;
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 415px) {
@@ -76,55 +77,56 @@ h2 {
 }
 /* GRID */
 .Grid {
-  margin-top: 12vh;
+  margin-top: 10vh;
 }
 .Grid table {
+  width: 98vw;
   margin: 0 auto;
   background-color: rgb(3, 77, 0);
-  border-radius: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   border: none;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
-/* .Grid tbody {
-  background-color: blue;
-} */
-/* .Grid tr { 
-  border: 1px solid aliceblue;
-} */
-/* .Grid td {
-  border: 1px solid aliceblue;
-} */
-
 .Grid td input {
   text-align: center;
-  width: 40px;
-  height: 40px;
-  font-size: 36px;
+  width: 30%;
+  height: 10%;
+  font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: rgb(3, 77, 0);
   color: aliceblue;
   border: none;
+  border-radius: 0px;
+  text-shadow: 2px 2px #333333;
 }
 .Grid td input:focus
 {
   background-color:rgb(13, 153, 76);
 }
+.Status {
+  text-align: center;
+}
+.Status p {
+  font-family: 'Night in Tokyo';
+  font-style: normal;
+  color: aliceblue;
+  font-weight: 400;
+  font-size: 20px;
+  text-shadow: 2px 2px #333333;
+}
 /* CONTROLS */
 .Controls {
 }
 .Controls table {
-  margin: 7vh auto;
+  position: relative;
+  margin: 5% auto;
   background-color: rgb(3, 77, 0);
-  border-radius: 25px;
-  border: none;
-}
-.Controls tbody {
-  background-color: blue;
-}
-.Controls tr {
-  background-color: red;
-}
-.Controls td {
-  background-color: green;
+  border-radius: 20px;
+  border-spacing: 10px 3px;
 }
 .Controls td input {
   text-align: center;
@@ -134,10 +136,6 @@ h2 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: rgb(3, 77, 0);
   color: aliceblue;
-  border: none;
-}
-.Controls td input:focus {
-  background-color:rgb(13, 153, 76);
 }
 /* FOOTER */
 .shareButtons {
@@ -150,6 +148,7 @@ h2 {
   bottom: 42px;
   width: 100%;
   text-align: center;
+  text-shadow: 2px 2px #333333;
 }
 .shareTheGame {
   vertical-align: middle;
@@ -185,5 +184,14 @@ h2 {
       border: 0;
       box-shadow: 0;
       display: inline;
+  }
+}
+/* DISABLE ZOOM ON INPUT */
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+    background: #eee;
   }
 }

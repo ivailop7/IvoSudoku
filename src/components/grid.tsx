@@ -1,4 +1,6 @@
 import * as React from 'react';
+import checkmarkImg from '../assets/checkmark_white_shadow.png';
+import crossmarkImg from '../assets/crossmark_white_shadow.png';
 
 interface IProps {
     matrix: number[][];
@@ -43,6 +45,12 @@ function cellValueChanged() {
     return true;    
 }
 
+function renderStatus() {
+    const isOK = <img src={checkmarkImg} width="16px" height="16px"/>;
+    const notOK = <img src={crossmarkImg} width="16px" height="16px"/>;
+    return <p>Boxes {isOK} Verticals {notOK} Horizontals {isOK}</p>;
+}
+
 class Grid extends React.Component<IProps, IState> {
 
     public renderGrid() {
@@ -65,6 +73,9 @@ class Grid extends React.Component<IProps, IState> {
                     {this.renderGrid()}
                 </tbody>
             </table>
+            <div className="Status">
+                {renderStatus()}
+            </div>
         </div>);
     }
 }
