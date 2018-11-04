@@ -7,6 +7,13 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 input[type="number"] {
   -moz-appearance: textfield;
 }
+/* Disable Hightlight on Click */
+textarea:focus, input:focus{
+  outline: none;
+}
+*:focus {
+  outline: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -51,10 +58,8 @@ h2 {
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 415px) {
   h2 {
-      margin: 20px;
-      font-family: "Night in Tokyo";
-      font-size: 32px;
-      color: aliceblue;
+      margin: 1vh auto;
+      font-size: 54px;
   }
   .rightLink {
       position: absolute; 
@@ -71,34 +76,46 @@ h2 {
 }
 /* GRID */
 .Grid {
-  margin-top: 5vh;
+  margin-top: 12vh;
 }
 .Grid table {
   margin: 0 auto;
-  background-color: beige;
+  background-color: rgb(3, 77, 0);
+  border-radius: 20px;
+  border: none;
 }
-.Grid tbody {
+/* .Grid tbody {
   background-color: blue;
-}
-.Grid tr {
-  background-color: red;
-}
-.Grid td {
-  background-color: green;
-}
+} */
+/* .Grid tr { 
+  border: 1px solid aliceblue;
+} */
+/* .Grid td {
+  border: 1px solid aliceblue;
+} */
+
 .Grid td input {
   text-align: center;
   width: 40px;
   height: 40px;
   font-size: 36px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(3, 77, 0);
+  color: aliceblue;
+  border: none;
+}
+.Grid td input:focus
+{
+  background-color:rgb(13, 153, 76);
 }
 /* CONTROLS */
 .Controls {
 }
 .Controls table {
-  margin: 0 auto;
-  background-color: beige;
+  margin: 7vh auto;
+  background-color: rgb(3, 77, 0);
+  border-radius: 25px;
+  border: none;
 }
 .Controls tbody {
   background-color: blue;
@@ -111,6 +128,16 @@ h2 {
 }
 .Controls td input {
   text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 36px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(3, 77, 0);
+  color: aliceblue;
+  border: none;
+}
+.Controls td input:focus {
+  background-color:rgb(13, 153, 76);
 }
 /* FOOTER */
 .shareButtons {
