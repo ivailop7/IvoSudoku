@@ -20,27 +20,23 @@ function stylePainter(row: number, col : number): any {
     }
     if(col === 0 && row === 0) {
         styleObj.borderTopLeftRadius = '20px';
+        styleObj.borderBottomLeftRadius = '20px';
     }
     if(col === 2 && row === 0) {
         styleObj.borderTopRightRadius = '20px';
-    }
-    if(col === 0 && row === 3) {
-        styleObj.borderBottomLeftRadius = '20px';
-    }
-    if(col === 2 && row === 3) {
         styleObj.borderBottomRightRadius = '20px';
     }
     return styleObj;
 }
 
-function renderKeypad() {
+function renderControls() {
     const imageSrc = [eraseImg, solveImg, restartImg];
-    const keypad = [['R','S','N'],[1,2,3],[4,5,6],[7,8,9]];
+    const keypad = [['R','S','N']];
     const table = [];
     for (let i = 0; i < keypad.length; ++i) {
         const cells = [];
         for (let j = 0; j < keypad[i].length; ++j) {
-            cells.push(<td key={"control " + i + j}><input type={i === 0 ? "image" : "button"} src={i === 0 ? imageSrc[j] : ''} value={i === 0 ? '' : keypad[i][j]} id={"btnGame" + i + j} style={stylePainter(i,j)}/></td>);
+            cells.push(<td key={"control " + i + j}><input type={"image"} src={imageSrc[j]} id={"btnGame" + i + j} style={stylePainter(i,j) }/></td>);
         }
         table.push(<tr key={"controlRow " + i}>{cells}</tr>);
     }
@@ -52,7 +48,7 @@ const controls = () => {
         <div className='Controls'>
             <table>
                 <tbody>
-                    {renderKeypad()}
+                    {renderControls()}
                 </tbody>
             </table>
         </div>

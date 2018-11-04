@@ -59,7 +59,7 @@ h2 {
 @media only screen and (max-width : 415px) {
   h2 {
       margin: 1vh auto;
-      font-size: 54px;
+      font-size: 36px;
   }
   .rightLink {
       position: absolute; 
@@ -162,7 +162,6 @@ h2 {
   border: 0;
   box-shadow: 0;
   text-align: center;
-  /* display: inline; */
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 415px) {
@@ -173,7 +172,7 @@ h2 {
       height: 20px;
       color: aliceblue;
       position: fixed;
-      bottom: 65px;
+      bottom: 4vh;
       width: 100%;
   }
   .shareTheGame {

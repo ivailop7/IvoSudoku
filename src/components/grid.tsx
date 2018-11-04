@@ -50,7 +50,7 @@ class Grid extends React.Component<IProps, IState> {
         for (let i = 0; i < 9; ++i) {
             const cells = [];
             for (let j = 0; j < 9; ++j) {
-                cells.push(<td key={"cell " + i + j}><input type='number' defaultValue={this.props.matrix[i][j].toString()} min={1} max={9} onChange={cellValueChanged} id={"cell" + i + j} style={stylePainter(i,j)}/></td>);
+                cells.push(<td key={"cell " + i + j}><input type='tel' defaultValue={this.props.matrix[i][j].toString()} min={1} max={9} onChange={cellValueChanged} id={"cell" + i + j} style={stylePainter(i,j)}/></td>);
             }
             table.push(<tr key={"row " + i} >{cells}</tr>);
         }
