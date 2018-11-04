@@ -1,6 +1,5 @@
 import * as React from 'react';
 import facebookImg from '../assets/facebook.png';
-import googleImg from '../assets/google.png';
 import linkedinImg from '../assets/linkedin.png';
 import pinterestImg from '../assets/pinterest.png';
 import twitterImg from '../assets/twitter.png';
@@ -9,9 +8,6 @@ const footer = () => {
     return(
         <div className='shareButtons' id='shareButton'>
             <div className='shareTheGame'>Share the game</div>
-            <a href="https://plus.google.com/share?url=http://sudoku.ivaylopavlov.com">
-                <img src={googleImg} alt="Google" />
-            </a>
             <a href="http://www.facebook.com/sharer.php?u=http://sudoku.ivaylopavlov.com">
                 <img src={facebookImg} alt="Facebook" />
             </a>
