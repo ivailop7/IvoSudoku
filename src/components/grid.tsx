@@ -45,10 +45,58 @@ function cellValueChanged() {
     return true;    
 }
 
-function renderStatus() {
+function renderStatus(matrix: number[][]) {
     const isOK = <img src={checkmarkImg} width="16px" height="16px"/>;
     const notOK = <img src={crossmarkImg} width="16px" height="16px"/>;
-    return <p>Boxes {isOK} Verticals {notOK} Horizontals {isOK}</p>;
+   
+    const horizontalOK = matrix.map(row => {
+        return (new Set(row)).size === row.length;
+    }).indexOf(false) < 0;
+    
+    const verticals = [];
+    for (let i = 0; i < matrix.length; i++) {
+        const a = [];
+        for (let j = 0; j < matrix[i].length; j++) {
+            a.push(matrix[j][i]);
+        }
+        verticals.push(a);        
+    }
+
+    const verticalOK = verticals.map(row => {
+        return (new Set(row)).size === row.length;
+    }).indexOf(false) < 0;
+
+    let box1 = [];
+    let box2 = [];
+    let box3 = [];
+    const boxValues = [];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (i <= 2 || (i >= 3 && i <= 5) || (i >= 6 && i <= 8)) {
+                if(j >= 0 && j <= 2) {
+                    box1.push(matrix[i][j]);
+                }
+                if(j >= 3 && j <= 5) {
+                    box2.push(matrix[i][j]);
+                }
+                if(j >= 6 && j <= 8) {
+                    box3.push(matrix[i][j]);
+                }
+            }
+            if ([2,5,8].indexOf(i) > -1 && j === 8) {
+                boxValues.push(box1,box2,box3);
+                box1=[];
+                box2=[];
+                box3=[];
+            }
+        }
+    }
+
+    const boxOK = boxValues.map(row => {
+        return (new Set(row)).size !== row.length;
+    }).some(tf => tf === false);
+
+    return <p>Boxes {boxOK ? isOK : notOK} Verticals {verticalOK ? isOK : notOK} Horizontals {horizontalOK ? isOK : notOK}</p>;
 }
 
 class Grid extends React.Component<IProps, IState> {
@@ -74,7 +122,7 @@ class Grid extends React.Component<IProps, IState> {
                 </tbody>
             </table>
             <div className="Status">
-                {renderStatus()}
+                {renderStatus(this.props.matrix)}
             </div>
         </div>);
     }

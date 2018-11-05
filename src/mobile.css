@@ -1,0 +1,114 @@
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 415px) {
+    /* HEADER */
+    h2 {
+        margin: 1vh auto;
+        font-size: 36px;
+    }
+    .rightLink {
+        position: absolute; 
+        right: 0; 
+        border: 0;
+        width: 80px;
+    }
+    .leftLink {
+        position: absolute;
+        left: 0; 
+        border: 0;
+        width: 80px;
+    }
+    /* GRID & CONTROLS */
+    /* GRID */
+.Grid {
+    margin-top: 9vh;
+  }
+  .Grid table {
+    width: 98vw;
+    margin: 0 auto;
+    background-color: rgb(3, 77, 0);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  .Grid td input {
+    text-align: center;
+    width: 50%;
+    height: 10%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(3, 77, 0);
+    color: aliceblue;
+    border: none;
+    border-radius: 0px;
+    text-shadow: 2px 2px #333333;
+  }
+  .Grid td input:focus
+  {
+    background-color:rgb(13, 153, 76);
+  }
+  .Status {
+    text-align: center;
+  }
+  .Status p {
+    font-family: 'Night in Tokyo';
+    font-style: normal;
+    color: aliceblue;
+    font-weight: 400;
+    font-size: 20px;
+    text-shadow: 2px 2px #333333;
+  }
+  /* CONTROLS */
+  .Controls {
+  }
+  .Controls table {
+    position: relative;
+    margin: 5% auto;
+    background-color: rgb(3, 77, 0);
+    border-radius: 20px;
+    border-spacing: 10px 3px;
+  }
+  .Controls td input {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(3, 77, 0);
+    color: aliceblue;
+  }
+    /* FOOTER */
+    .shareButtons {
+        margin: 0 auto;
+        font-family: "Night in Tokyo";
+        font-size: 16px;
+        height: 20px;
+        color: aliceblue;
+        position: fixed;
+        bottom: 4vh;
+        width: 100%;
+    }
+    .shareTheGame {
+        vertical-align: middle;
+        line-height: 20px;
+    }
+    #shareButton img {
+        width: 20px;
+        padding: 5px;
+        border: 0;
+        box-shadow: 0;
+        display: inline;
+    }
+}
+
+/* DISABLE ZOOM ON INPUT */
+/* @media screen and (-webkit-min-device-pixel-ratio:0) { 
+select:focus,
+textarea:focus,
+input:focus {
+    font-size: 16px;
+    background: #eee;
+}
+} */
