@@ -6,7 +6,16 @@ import Header from './components/header';
 
 class App extends React.Component {
   
-  public matrix = this.gridGenerator();
+  public matrix: number[][];
+  public gridRef: any;
+
+  constructor(props: any) {
+    super(props);
+    this.matrix = this.gridGenerator();
+    this.gridRef = React.createRef();
+  }
+  
+  
 
   public gridGenerator(): number[][] {
     const matrix: number[][] = [[1,2,3,4,5,6,7,8,9],
@@ -26,8 +35,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header/>
-        <Grid matrix={this.matrix} />
-        <Controls/>
+        <Grid matrix={this.matrix} ref={this.gridRef}/>
+        <Controls newGameFunc={this.gridRef.newGame} resetGridFunc={} solveGameFunc={} />
         <Footer/>
       </div>
     );

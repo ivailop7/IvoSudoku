@@ -4,6 +4,10 @@ import crossmarkImg from '../assets/crossmark_white_shadow.png';
 
 interface IProps {
     matrix: number[][];
+    ref: any;
+    // clearGrid: any;
+    // newGame: any;
+    // solveGame: any;
 }
 
 interface IState {
@@ -38,11 +42,6 @@ function stylePainter(row: number, col : number): any {
         styleObj.borderBottomRightRadius = '20px';
     }
     return styleObj;
-}
-
-function cellValueChanged() {
-    console.log("value Changed");
-    return true;    
 }
 
 function renderStatus(matrix: number[][]) {
@@ -100,6 +99,22 @@ function renderStatus(matrix: number[][]) {
 }
 
 class Grid extends React.Component<IProps, IState> {
+    public clearGrid() {
+        console.log("Clear Grid to Start");
+    }
+    
+    public newGame() {
+        console.log("New Game");
+    }
+    
+    public solveGame() {
+        console.log("Solution");
+    }
+    
+    public cellValueChanged() {
+        console.log("value Changed");
+        return true;    
+    }
 
     public renderGrid() {
         const table = [];

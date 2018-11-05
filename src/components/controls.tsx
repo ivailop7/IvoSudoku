@@ -3,6 +3,16 @@ import eraseImg from '../assets/eraser_white.png';
 import restartImg from '../assets/restart_white.png';
 import solveImg from '../assets/solve_white.png';
 
+interface IProps {
+    newGameFunc: any;
+    resetGridFunc: any;
+    solveGameFunc: any;
+}
+
+interface IState {
+    empty?: any;
+}
+
 function stylePainter(col : number): any {
     const styleObj = {
         borderBottomLeftRadius: '',
@@ -35,7 +45,7 @@ function renderControls() {
     return table;
 }
 
-const controls = () => {
+const controls : React.StatelessComponent<{}> = () => {
     return(
         <div className='Controls'>
             <table>
