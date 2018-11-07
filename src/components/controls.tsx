@@ -4,9 +4,9 @@ import restartImg from '../assets/restart_white.png';
 import solveImg from '../assets/solve_white.png';
 
 interface IProps {
-    newGameFunc: any;
-    resetGridFunc: any;
-    solveGameFunc: any;
+    triggerNew: any;
+    triggerSolve: any;
+    triggerReset: any;
 }
 
 interface IState {
@@ -31,30 +31,33 @@ function stylePainter(col : number): any {
     return styleObj;
 }
 
-function renderControls() {
-    const imageSrc = [eraseImg, solveImg, restartImg];
-    const keypad = [['R','S','N']];
-    const table = [];
-    for (let i = 0; i < keypad.length; ++i) {
-        const cells = [];
-        for (let j = 0; j < keypad[i].length; ++j) {
-            cells.push(<td key={"control " + i + j}><input type={"image"} src={imageSrc[j]} style={stylePainter(j) }/></td>);
-        }
-        table.push(<tr key={"controlRow " + i}>{cells}</tr>);
-    }
-    return table;
-}
+class Controls extends React.Component<IProps, IState> {
 
-const controls : React.StatelessComponent<{}> = () => {
-    return(
-        <div className='Controls'>
+    public renderControls() {
+        const imageSrc = [eraseImg, solveImg, restartImg];
+        const imageFunc = [this.props.triggerReset, this.props.triggerSolve, this.props.triggerNew]
+        const keypad = [['R','S','N']];
+        const table = [];
+        for (let i = 0; i < keypad.length; ++i) {
+            const cells = [];
+            for (let j = 0; j < keypad[i].length; ++j) {
+                cells.push(<td key={"control " + i + j}><input type={"image"} src={imageSrc[j]} style={stylePainter(j)} onClick={imageFunc[j]} /></td>);
+            }
+            table.push(<tr key={"controlRow " + i}>{cells}</tr>);
+        }
+        return table;
+    }
+    
+    
+    public render() {
+        return <div className='Controls'>
             <table>
                 <tbody>
-                    {renderControls()}
+                    {this.renderControls()}
                 </tbody>
             </table>
         </div>
-    );
-};
+    };
+}
 
-export default controls;
+export default Controls;

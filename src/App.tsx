@@ -5,38 +5,24 @@ import Grid from './components/grid';
 import Header from './components/header';
 
 class App extends React.Component {
-  
-  public matrix: number[][];
-  public gridRef: any;
+
+  public child: any;
 
   constructor(props: any) {
     super(props);
-    this.matrix = this.gridGenerator();
-    this.gridRef = React.createRef();
+    this.child = React.createRef<Grid>();
   }
   
-  
-
-  public gridGenerator(): number[][] {
-    const matrix: number[][] = [[1,2,3,4,5,6,7,8,9],
-                                [2,3,4,5,6,7,8,9,1],
-                                [3,4,5,6,7,8,9,1,2],
-                                [4,5,6,7,8,9,1,2,3],
-                                [5,6,7,8,9,1,2,3,4],
-                                [6,7,8,9,1,2,3,4,5], 
-                                [7,8,9,1,2,3,4,5,6], 
-                                [8,9,1,2,3,4,5,6,7],
-                                [9,1,2,3,4,5,6,7,8]];
-    return matrix;
-  }
+  public appNew = () => { this.child.current.newGame(); }
+  public appSolve = () => { this.child.current.solveGame(); }
+  public appReset = () => { this.child.current.clearGame(); }
   
   public render() {
-    console.log(this.matrix);
     return (
       <div className="App">
         <Header/>
-        <Grid matrix={this.matrix} ref={this.gridRef}/>
-        <Controls newGameFunc={this.gridRef.newGame} resetGridFunc={} solveGameFunc={} />
+        <Grid ref={this.child} />
+        <Controls triggerNew={this.appNew} triggerSolve={this.appSolve} triggerReset={this.appReset} />
         <Footer/>
       </div>
     );
