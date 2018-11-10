@@ -55,6 +55,23 @@ h2 {
   text-align: center;
   text-shadow: 2px 2px #333333;
 }
+h3 {
+  margin: auto auto;
+  font-family: "Night in Tokyo";
+  font-size: 36px;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px #333333;
+}
+h4 {
+  margin: auto auto;
+  font-size: 14px;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px #333333;
+}
 /* GRID */
 .Grid {
   margin-top: 12vh;

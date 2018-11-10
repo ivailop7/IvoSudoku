@@ -1,6 +1,4 @@
 import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
 
 interface IProps {
@@ -10,8 +8,10 @@ interface IProps {
 }
 
 interface IState {
-    open: any;
+    open?: any;
 }
+
+    
 
 class SimpleModal extends React.Component<IProps, IState> {
   public componentDidMount() {
@@ -33,27 +33,16 @@ class SimpleModal extends React.Component<IProps, IState> {
   
   public render() {
     return (
-      <div>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose} >
-          <div style={{top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`}}>
-            <Typography variant="title" id="modal-title" style={{color: '#ffffff'}}>
-              {"Congrats!"}
-            </Typography>
-            <Typography variant="subheading" id="simple-modal-description" style={{color: '#ffffff'}}>
+      <div>     
+          <div style={{backgroundColor: '#034D00', boxShadow: '#333333', top: `50%`, left: `50%`}}>
+              <h3>{"Congrats!"}</h3>
             <br/>
-                {"You solved the game successfully!"}
-            </Typography>
+              <h4>{"You solved the game successfully!"}</h4>
             <br/>
             <Button variant="contained" color="primary" onClick={this.facebookSharePopup}>Share the Game on Facebook</Button>
           </div>
-        </Modal>
       </div>
     );
   }
 }
-
 export default SimpleModal;

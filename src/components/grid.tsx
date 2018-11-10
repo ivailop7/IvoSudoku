@@ -1,6 +1,8 @@
+import Dialog from '@material-ui/core/Dialog';
 import * as React from 'react';
 import checkmarkImg from '../assets/checkmark_white_shadow.png';
 import crossmarkImg from '../assets/crossmark_white_shadow.png';
+import GameOver from '../components/gameover';
 
 const NUMBER_OF_EMPTY_BOXES = 60;
 
@@ -17,6 +19,8 @@ interface IState {
 }
 
 class Grid extends React.Component<IProps, IState> {
+
+    public validState: boolean;
 
     public componentWillMount(): void {
         this.newGame();
@@ -49,23 +53,25 @@ class Grid extends React.Component<IProps, IState> {
     }
     
     public newGame = () => {
+        this.validState = true;
         const [fullMatrix, matrix] = this.valueGenerator();
         const startMatrix =  JSON.parse(JSON.stringify(matrix));
         this.setState({
             fullMatrix,
             matrix,
-            startMatrix
+            startMatrix,
         });
     }
 
     public solveGame = () => {
+        this.validState = false;
         this.setState({
             matrix : this.state.fullMatrix
         });
     }
 
     public isUserSolved = () => {
-        // Check if matrix is fillout by user, if so -> Material Congrats Popup + Share Buttons
+        return this.state.matrix.map(row => row.indexOf(0) < 0).indexOf(false) < 0 && this.validState;
     }
     
     public stylePainter = (row: number, col : number) => {
@@ -98,10 +104,7 @@ class Grid extends React.Component<IProps, IState> {
         return styleObj;
     }
 
-    public renderStatus = (matrix: number[][]) => {
-        const isOK = <img src={checkmarkImg} width="16px" height="16px"/>;
-        const notOK = <img src={crossmarkImg} width="16px" height="16px"/>;
-       
+    public statusCalculator = (matrix: number[][]): boolean[] => {
         const horizontalOK = matrix.map(row => {
             row = row.filter(n => n !== 0);
             return (new Set(row)).size === row.length;
@@ -151,7 +154,15 @@ class Grid extends React.Component<IProps, IState> {
             row = row.filter(n => n !== 0);
             return (new Set(row)).size === row.length;
         }).indexOf(false) < 0;
-    
+
+        return [boxOK, verticalOK, horizontalOK];
+    }
+    public renderStatus = (matrix: number[][]) => {
+        const isOK = <img src={checkmarkImg} width="16px" height="16px"/>;
+        const notOK = <img src={crossmarkImg} width="16px" height="16px"/>;
+       
+        const [boxOK, verticalOK, horizontalOK] = this.statusCalculator(matrix);
+        this.validState = boxOK && verticalOK && horizontalOK;
         return <p>Boxes {boxOK ? isOK : notOK} Verticals {verticalOK ? isOK : notOK} Horizontals {horizontalOK ? isOK : notOK}</p>;
     }
 
@@ -160,7 +171,7 @@ class Grid extends React.Component<IProps, IState> {
         const updatedMatrix = JSON.parse(JSON.stringify(this.state.matrix));
         updatedMatrix[loc[0]][loc[1]] = Number(event.nativeEvent.data);
         this.setState({
-            matrix: updatedMatrix
+            matrix: updatedMatrix,
         });
         return true;
     }
@@ -179,6 +190,7 @@ class Grid extends React.Component<IProps, IState> {
     
     public render() {
         return (<div className='Grid'>
+                {this.isUserSolved() ? <Dialog children={<GameOver/>} open={true} /> : null}
                 <table key='masterTable'>
                     <tbody>
                     {this.renderGrid(this.state.matrix)}
