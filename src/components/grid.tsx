@@ -44,9 +44,7 @@ class Grid extends React.Component<IProps, IState> {
 
     public clearGame = () => {
         this.setState({
-            fullMatrix: this.state.fullMatrix,
             matrix: this.state.startMatrix,
-            startMatrix: this.state.startMatrix
         });
     }
     
@@ -61,8 +59,6 @@ class Grid extends React.Component<IProps, IState> {
     }
 
     public solveGame = () => {
-        console.log(this.state.fullMatrix);
-        
         this.setState({
             matrix : this.state.fullMatrix
         });
@@ -154,7 +150,7 @@ class Grid extends React.Component<IProps, IState> {
 
     public cellValueChanged = (event: any) => {
         const loc = event.target.id.slice(-2);
-        const updatedMatrix = this.state.matrix;
+        const updatedMatrix = JSON.parse(JSON.stringify(this.state.matrix));
         updatedMatrix[loc[0]][loc[1]] = Number(event.nativeEvent.data);
         this.setState({
             matrix: updatedMatrix
@@ -175,9 +171,6 @@ class Grid extends React.Component<IProps, IState> {
     }
     
     public render() {
-        console.log(this.state.fullMatrix);
-        console.log(this.state.matrix);
-        console.log(this.state.startMatrix);
         return (<div className='Grid'>
                 <table key='masterTable'>
                     <tbody>
