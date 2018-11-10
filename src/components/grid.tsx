@@ -2,6 +2,8 @@ import * as React from 'react';
 import checkmarkImg from '../assets/checkmark_white_shadow.png';
 import crossmarkImg from '../assets/crossmark_white_shadow.png';
 
+const NUMBER_OF_EMPTY_BOXES = 60;
+
 interface IProps {
     clearGame?: any;
     newGame?: any;
@@ -17,11 +19,7 @@ interface IState {
 class Grid extends React.Component<IProps, IState> {
 
     public componentWillMount(): void {
-        this.setState({
-            fullMatrix: this.valueGenerator()[0],
-            matrix: this.valueGenerator()[1],
-            startMatrix: JSON.parse(JSON.stringify(this.valueGenerator()[1]))
-        });
+        this.newGame();
     }
 
     public valueGenerator = () => {
@@ -34,32 +32,40 @@ class Grid extends React.Component<IProps, IState> {
                                             [7,8,9,1,2,3,4,5,6], 
                                             [8,9,1,2,3,4,5,6,7],
                                             [9,1,2,3,4,5,6,7,8]];
+        
+        // Non-deterministic, due to possible repetition of a 0 box
+        const startMatrix = JSON.parse(JSON.stringify(fullMatrix));
+        for (let i = 0; i < NUMBER_OF_EMPTY_BOXES; i++) {
+            startMatrix[Math.floor(Math.random() * fullMatrix.length)][Math.floor(Math.random() * fullMatrix[0].length)] = 0;    
+        }
 
-        const sparceMatrix: number[][] =   [[1,2,3,4,5,6,7,8,9],
-                                            [0,3,4,5,6,7,8,9,1],
-                                            [0,4,5,6,7,8,9,1,2],
-                                            [0,5,6,7,8,9,1,2,3],
-                                            [5,6,7,8,9,1,2,3,4],
-                                            [6,7,8,9,1,2,3,4,5], 
-                                            [7,8,9,1,2,3,4,5,6], 
-                                            [8,9,1,2,3,4,5,6,7],
-                                            [9,1,2,3,4,5,6,7,8]];
-
-        return [fullMatrix, sparceMatrix];
+        return [fullMatrix, startMatrix];
     }
 
     public clearGame = () => {
         this.setState({
-            matrix : this.state.startMatrix
+            fullMatrix: this.state.fullMatrix,
+            matrix: this.state.startMatrix,
+            startMatrix: this.state.startMatrix
         });
     }
     
     public newGame = () => {
-        console.log("New Game");
+        const [fullMatrix, matrix] = this.valueGenerator();
+        const startMatrix =  JSON.parse(JSON.stringify(matrix));
+        this.setState({
+            fullMatrix,
+            matrix,
+            startMatrix
+        });
     }
 
     public solveGame = () => {
-        console.log("Solution");
+        console.log(this.state.fullMatrix);
+        
+        this.setState({
+            matrix : this.state.fullMatrix
+        });
     }
     
     public stylePainter = (row: number, col : number) => {
@@ -153,7 +159,6 @@ class Grid extends React.Component<IProps, IState> {
         this.setState({
             matrix: updatedMatrix
         });
-        console.log(this.state.matrix);
         return true;
     }
 
@@ -170,7 +175,9 @@ class Grid extends React.Component<IProps, IState> {
     }
     
     public render() {
-        console.log("Matrix To Render:", this.state.matrix);
+        console.log(this.state.fullMatrix);
+        console.log(this.state.matrix);
+        console.log(this.state.startMatrix);
         return (<div className='Grid'>
                 <table key='masterTable'>
                     <tbody>
