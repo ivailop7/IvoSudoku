@@ -23,15 +23,15 @@ class Grid extends React.Component<IProps, IState> {
     }
 
     public valueGenerator = () => {
-        const fullMatrix: number[][] =     [[1,2,3,4,5,6,7,8,9],
-                                            [2,3,4,5,6,7,8,9,1],
-                                            [3,4,5,6,7,8,9,1,2],
-                                            [4,5,6,7,8,9,1,2,3],
-                                            [5,6,7,8,9,1,2,3,4],
-                                            [6,7,8,9,1,2,3,4,5], 
-                                            [7,8,9,1,2,3,4,5,6], 
-                                            [8,9,1,2,3,4,5,6,7],
-                                            [9,1,2,3,4,5,6,7,8]];
+        const fullMatrix: number[][] =  [[1,2,3,4,5,6,7,8,9],
+                                        [2,3,4,5,6,7,8,9,1],
+                                        [3,4,5,6,7,8,9,1,2],
+                                        [4,5,6,7,8,9,1,2,3],
+                                        [5,6,7,8,9,1,2,3,4],
+                                        [6,7,8,9,1,2,3,4,5], 
+                                        [7,8,9,1,2,3,4,5,6], 
+                                        [8,9,1,2,3,4,5,6,7],
+                                        [9,1,2,3,4,5,6,7,8]];
         
         // Non-deterministic, due to possible repetition of a 0 box
         const startMatrix = JSON.parse(JSON.stringify(fullMatrix));
@@ -62,6 +62,10 @@ class Grid extends React.Component<IProps, IState> {
         this.setState({
             matrix : this.state.fullMatrix
         });
+    }
+
+    public isUserSolved = () => {
+        // Check if matrix is fillout by user, if so -> Material Congrats Popup + Share Buttons
     }
     
     public stylePainter = (row: number, col : number) => {
@@ -99,6 +103,7 @@ class Grid extends React.Component<IProps, IState> {
         const notOK = <img src={crossmarkImg} width="16px" height="16px"/>;
        
         const horizontalOK = matrix.map(row => {
+            row = row.filter(n => n !== 0);
             return (new Set(row)).size === row.length;
         }).indexOf(false) < 0;
         
@@ -112,6 +117,7 @@ class Grid extends React.Component<IProps, IState> {
         }
     
         const verticalOK = verticals.map(row => {
+            row = row.filter(n => n !== 0);
             return (new Set(row)).size === row.length;
         }).indexOf(false) < 0;
     
@@ -141,9 +147,10 @@ class Grid extends React.Component<IProps, IState> {
             }
         }
     
-        const boxOK = boxValues.map(row => {
-            return (new Set(row)).size !== row.length;
-        }).some(tf => tf === false);
+        const boxOK = boxValues.map(row => { 
+            row = row.filter(n => n !== 0);
+            return (new Set(row)).size === row.length;
+        }).indexOf(false) < 0;
     
         return <p>Boxes {boxOK ? isOK : notOK} Verticals {verticalOK ? isOK : notOK} Horizontals {horizontalOK ? isOK : notOK}</p>;
     }
