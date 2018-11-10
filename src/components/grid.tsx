@@ -167,6 +167,9 @@ class Grid extends React.Component<IProps, IState> {
     }
 
     public cellValueChanged = (event: any) => {
+        if (isNaN(event.nativeEvent.data)) {
+            return false;
+        }
         const loc = event.target.id.slice(-2);
         const updatedMatrix = JSON.parse(JSON.stringify(this.state.matrix));
         updatedMatrix[loc[0]][loc[1]] = Number(event.nativeEvent.data);
@@ -181,7 +184,7 @@ class Grid extends React.Component<IProps, IState> {
         for (let i = 0; i < 9; ++i) {
             const cells = [];
             for (let j = 0; j < 9; ++j) {
-                cells.push(<td key={"cell " + i + j}><input type='tel' min={1} max={9} onChange={this.cellValueChanged} id={"cell" + i + j} style={this.stylePainter(i,j)} value={renderMatrix[i][j] === 0 ? '' : renderMatrix[i][j].toString()} /></td>);
+                cells.push(<td key={"cell " + i + j}><input type='tel' min={1} max={9} step={1} onChange={this.cellValueChanged} id={"cell" + i + j} style={this.stylePainter(i,j)} value={renderMatrix[i][j] === 0 ? '' : renderMatrix[i][j].toString()} maxLength={1} /></td>);
             }
             table.push(<tr key={"row " + i} >{cells}</tr>);
         }
