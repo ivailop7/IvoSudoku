@@ -3,6 +3,7 @@ import * as React from 'react';
 import checkmarkImg from '../assets/checkmark_white_shadow.png';
 import crossmarkImg from '../assets/crossmark_white_shadow.png';
 import GameOver from '../components/gameover';
+import GridGenerator from './generator';
 
 const NUMBER_OF_EMPTY_BOXES = 60;
 
@@ -27,22 +28,15 @@ class Grid extends React.Component<IProps, IState> {
     }
 
     public valueGenerator = () => {
-        const fullMatrix: number[][] =  [[1,2,3,4,5,6,7,8,9],
-                                        [2,3,4,5,6,7,8,9,1],
-                                        [3,4,5,6,7,8,9,1,2],
-                                        [4,5,6,7,8,9,1,2,3],
-                                        [5,6,7,8,9,1,2,3,4],
-                                        [6,7,8,9,1,2,3,4,5], 
-                                        [7,8,9,1,2,3,4,5,6], 
-                                        [8,9,1,2,3,4,5,6,7],
-                                        [9,1,2,3,4,5,6,7,8]];
+        const generator = new GridGenerator();
+        const fullMatrix: number[][] = generator.getMatrix();
         
         // Non-deterministic, due to possible repetition of a 0 box
         const startMatrix = JSON.parse(JSON.stringify(fullMatrix));
         for (let i = 0; i < NUMBER_OF_EMPTY_BOXES; i++) {
             startMatrix[Math.floor(Math.random() * fullMatrix.length)][Math.floor(Math.random() * fullMatrix[0].length)] = 0;    
         }
-
+        
         return [fullMatrix, startMatrix];
     }
 
